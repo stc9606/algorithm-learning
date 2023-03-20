@@ -28,7 +28,7 @@ public class BubbleSort {
                 }
             }
 
-            if (swap == false) break;
+            if (!swap) break;
         }
         return dataList;
     }
