@@ -1,13 +1,13 @@
-package com.algorithm.practice;
-
-import com.algorithm.practice.graph.Cabbage;
+package com.algorithm.practice.graph;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.*;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.StringTokenizer;
 
-public class Main {
+public class Cabbage {
     static Queue<Coordinate> queue = new LinkedList<>();
 
     static int[] CHECK_X = { 1, 0, -1, 0 };
@@ -68,7 +68,7 @@ public class Main {
                 if (nX >= 0 && nY >= 0 && nX < M && nY < N) {
                     if (!visit[nX][nY] && map[nX][nY] == 1)
                         queue.offer(new Coordinate(nX, nY));
-                    visit[nX][nY] = true;
+                        visit[nX][nY] = true;
                 }
             }
         }
