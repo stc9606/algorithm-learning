@@ -1,11 +1,12 @@
-package com.algorithm.practice;
+package com.algorithm.practice.graph;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
+import java.util.Queue;
 
-public class Main {
+public class AddrCount {
     static Queue<Coordinate> queue = new LinkedList<>();
 
     static int[] CHECK_X = { 1, 0, -1, 0 };
