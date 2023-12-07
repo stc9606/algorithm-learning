@@ -1,4 +1,4 @@
-package com.algorithm.practice.stack;
+package com.algorithm.practice.example;
 
 import java.io.BufferedReader;
 import java.io.IOException;
