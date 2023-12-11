@@ -1,47 +1,65 @@
 package com.algorithm.practice.example;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.StringTokenizer;
+import java.io.*;
+import java.util.Stack;
 
 public class 에디터 {
     
-    static int N; // 커서 위치
-    static int M;
+    static int N;
 
     public static void main(String[] args) throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        String s = reader.readLine();
-        StringBuilder result = new StringBuilder(s);
-        N = s.length();
-        M = Integer.parseInt(reader.readLine());
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter (new OutputStreamWriter(System.out));
 
-        for (int i = 0; i < M; i++) {
-            StringTokenizer tokenizer = new StringTokenizer(reader.readLine());
-            String cmd = tokenizer.nextToken();
+        Stack<String> leftSt = new Stack<>();
+        Stack<String> rightSt = new Stack<>();
 
-            switch (cmd) {
-                case "L":
-                    if (N == 0) break;
-                    N -= 1;
+        String[] str =br.readLine().split("");
+
+        for(String s : str) {
+            leftSt.push(s);
+        }
+
+        N = Integer.parseInt(br.readLine());
+
+        for(int i = 0; i < N; i++) {
+            String command = br.readLine();
+            char c = command.charAt(0);
+
+            switch(c) {
+                case 'L':
+                    if(!leftSt.isEmpty())
+                        rightSt.push(leftSt.pop());
+
                     break;
-                case "D":
-                    if (N == result.length()) break;
-                    N += 1;
+                case 'D':
+                    if(!rightSt.isEmpty())
+                        leftSt.push(rightSt.pop());
+
                     break;
-                case "B":
-                    if (N == 0) break;
-                    result.delete(N-1, N);
-                    N -= 1;
+                case 'B':
+                    if(!leftSt.isEmpty()) {
+                        leftSt.pop();
+                    }
                     break;
-                case "P":
-                    String add = tokenizer.nextToken();
-                    result.insert(N, add);
-                    N += 1;
+                case 'P':
+                    char t = command.charAt(2);
+                    leftSt.push(String.valueOf(t));
+
+                    break;
+                default:
                     break;
             }
         }
-        System.out.println(result);
+
+        while(!leftSt.isEmpty())
+            rightSt.push(leftSt.pop());
+
+        while(!rightSt.isEmpty())
+            bw.write(rightSt.pop());
+
+        bw.flush();
+        br.close();
+        bw.close();
     }
 }
